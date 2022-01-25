@@ -3,7 +3,7 @@ use clap::{arg, App, ArgMatches};
 pub const ECHO: &str = "echo";
 
 pub fn echo_command() -> App<'static> {
-    App::new("echo")
+    App::new(ECHO)
         .about("Echos the provided text")
         .arg(arg!([NAME]))
 }
