@@ -1,6 +1,6 @@
 use std::error::Error;
 use std::fmt;
-use std::fmt::{Debug, Display, Formatter};
+use std::fmt::Debug;
 use std::io::Write;
 
 pub mod echo;
@@ -8,6 +8,7 @@ pub mod ls;
 
 pub const NEWLINE: &str = "\n";
 pub const DOUBLE_SPACE: &str = "  ";
+pub const CURRENT_DIRECTORY: &str = ".";
 
 #[derive(Debug, Clone)]
 pub struct NotFoundError {
