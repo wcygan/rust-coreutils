@@ -1,7 +1,8 @@
-mod command;
+use clap::{App, AppSettings};
 
 use crate::command::echo::{echo_command, echo_main, ECHO};
-use clap::{App, AppSettings};
+
+mod command;
 
 fn main() {
     let matches = App::new("rust-coreutils")
@@ -13,10 +14,16 @@ fn main() {
         .subcommand(echo_command())
         .get_matches();
 
-    match matches.subcommand() {
-        Some((ECHO, sub_matches)) => {
-            echo_main(sub_matches);
-        }
+    let result = match matches.subcommand() {
+        Some((ECHO, sub_matches)) => echo_main(sub_matches),
         _ => unreachable!(),
+    };
+
+    match result {
+        Ok(_) => {}
+        Err(e) => {
+            eprintln!("error: {}", e);
+            std::process::exit(1);
+        }
     }
 }
