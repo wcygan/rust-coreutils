@@ -1,5 +1,7 @@
 pub mod echo;
+pub mod ls;
 
+pub const DOUBLE_SPACE: &str = "  ";
 pub const NEWLINE: &str = "\n";
 
 #[cfg(test)]
