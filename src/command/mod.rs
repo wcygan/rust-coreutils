@@ -30,7 +30,7 @@ impl fmt::Display for NotFoundError {
 
 fn write_bytes(mut writer: Box<dyn Write>, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
     match writer.write(bytes) {
-        Ok(_t) => Ok(()),
+        Ok(_) => Ok(()),
         Err(e) => Err(Box::new(e)),
     }
 }
