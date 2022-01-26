@@ -22,7 +22,7 @@ fn main() {
     match result {
         Ok(_) => {}
         Err(e) => {
-            eprintln!("error: {}", e);
+            eprintln!("{}", e);
             std::process::exit(1);
         }
     }
