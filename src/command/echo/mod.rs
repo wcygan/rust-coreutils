@@ -10,9 +10,12 @@ pub const ECHO: &str = "echo";
 const TEXT: &str = "text";
 
 pub fn echo_command() -> App<'static> {
-    App::new(ECHO)
-        .about("Echos the provided text")
-        .arg(Arg::new(TEXT).required(false).min_values(0))
+    App::new(ECHO).about("Echos the provided text").arg(
+        Arg::new(TEXT)
+            .required(false)
+            .help("The text to echo")
+            .min_values(0),
+    )
 }
 
 pub fn echo_main(matches: &ArgMatches) -> Result<(), Box<dyn Error>> {

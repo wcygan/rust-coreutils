@@ -58,7 +58,7 @@ impl<'a> ParsedResult<'_> {
             .lines()
             .map(|l| {
                 let words = l.split_ascii_whitespace().count();
-                (1 as u64, words as u64)
+                (1_u64, words as u64)
             })
             .fold((0, 0), |a, b| (a.0 + b.0, a.1 + b.1));
 
