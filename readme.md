@@ -2,9 +2,9 @@
 
 A Rust implementation of gnu-coreutils programs (https://www.gnu.org/software/coreutils/manual/coreutils.html)
 
-## Installation via cargo
+## Installation via [Cargo](https://www.rust-lang.org/tools/install)
 
-Install on any platform using Cargo:
+Install on any platform using `cargo install`:
 
 ```
 $ cargo install --git https://github.com/wcygan/rust-coreutils
