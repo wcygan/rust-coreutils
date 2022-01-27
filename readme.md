@@ -34,7 +34,7 @@ SUBCOMMANDS:
     wc      Print newline, word, and byte counts
 ```
 
-You can execute command like `tree` in the following way:
+You can execute a subcommand like `tree` in the following way:
 
 ```
 $ rcu tree src
