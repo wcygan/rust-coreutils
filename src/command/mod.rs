@@ -37,25 +37,6 @@ impl fmt::Display for NotFoundError {
     }
 }
 
-#[derive(Debug, Clone)]
-pub struct NoFilesProvidedError {
-    msg: String,
-}
-
-impl NoFilesProvidedError {
-    pub fn new(msg: String) -> NoFilesProvidedError {
-        NoFilesProvidedError { msg }
-    }
-}
-
-impl Error for NoFilesProvidedError {}
-
-impl fmt::Display for NoFilesProvidedError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.msg)
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
