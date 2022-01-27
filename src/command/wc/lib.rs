@@ -153,6 +153,9 @@ pub fn read_stdin() -> Result<ParsedResult<'static>, Box<dyn Error>> {
     Ok(result)
 }
 
+///
+/// Prints all of the ParsedResults to stdout
+///
 pub fn print_results(
     results: Vec<ParsedResult>,
     modifiers: WordCountModifiers,
