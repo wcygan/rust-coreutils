@@ -6,7 +6,7 @@ use crate::command::{NotFoundError, HIDDEN_FILE_PREFIX, SINGLE_SPACE, TRIPLE_SPA
 
 const VERTICAL: &str = "│";
 const SINGLE_HORIZONTAL: &str = "─";
-const DOUBLE_HORIZONTAL: &str = "───";
+const DOUBLE_HORIZONTAL: &str = "──";
 const BRANCH: &str = "├";
 const ENDING: &str = "└─";
 

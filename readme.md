@@ -42,25 +42,25 @@ You can execute a subcommand like `tree` in the following way:
 ```
 $ rcu tree src
 src
-├─── command
-│   ├─── date
-│   │   ├─── lib.rs
+├── command
+│   ├── date
+│   │   ├── lib.rs
 │   │   └── mod.rs
-│   ├─── echo
-│   │   ├─── lib.rs
+│   ├── echo
+│   │   ├── lib.rs
 │   │   └── mod.rs
-│   ├─── ls
-│   │   ├─── lib.rs
+│   ├── ls
+│   │   ├── lib.rs
 │   │   └── mod.rs
-│   ├─── mod.rs
-│   ├─── tree
-│   │   ├─── lib.rs
+│   ├── mod.rs
+│   ├── tree
+│   │   ├── lib.rs
 │   │   └── mod.rs
-│   ├─── wc
-│   │   ├─── lib.rs
+│   ├── wc
+│   │   ├── lib.rs
 │   │   └── mod.rs
 │   └── yes
-│       ├─── lib.rs
+│       ├── lib.rs
 │       └── mod.rs
 └── main.rs
 ```
