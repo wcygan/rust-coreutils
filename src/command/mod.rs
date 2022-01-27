@@ -1,15 +1,21 @@
 use std::error::Error;
 use std::fmt;
 use std::fmt::Debug;
+use std::fs::DirEntry;
 use std::io::Write;
+use std::path::Path;
 
 pub mod echo;
 pub mod ls;
+pub mod tree;
 pub mod wc;
 
 pub const NEWLINE: &str = "\n";
+pub const SINGLE_SPACE: &str = " ";
 pub const DOUBLE_SPACE: &str = "  ";
+pub const TRIPLE_SPACE: &str = "   ";
 pub const CURRENT_DIRECTORY: &str = ".";
+pub const HIDDEN_FILE_PREFIX: &str = ".";
 
 fn write_bytes(mut writer: Box<dyn Write>, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
     match writer.write(bytes) {

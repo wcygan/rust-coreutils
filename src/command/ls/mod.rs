@@ -25,7 +25,7 @@ pub fn ls_command() -> App<'static> {
                 .help("The directory to list the contents of"),
         )
         .arg(
-            Arg::new("long")
+            Arg::new(LONG_L)
                 .short(LONG_S)
                 .long(LONG_L)
                 .help("Display the directory contents in a column")
@@ -34,23 +34,13 @@ pub fn ls_command() -> App<'static> {
 }
 
 pub fn ls_main(matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
-    let long_format = matches.is_present(LONG_L);
     let dir = match matches.value_of(DIR) {
         None => CURRENT_DIRECTORY,
         Some(dir) => dir,
     };
 
-    let path = Path::new(dir);
-    match path.exists() && path.is_dir() {
-        true => {
-            let writer = Box::new(std::io::stdout());
-            list_directory_contents(path, writer, long_format)
-        }
-        false => {
-            return Err(Box::new(NotFoundError::new(format!(
-                "{} is not a directory",
-                dir
-            ))));
-        }
-    }
+    let path = std::fs::read_dir(Path::new(dir))?;
+    let writer = Box::new(std::io::stdout());
+    let long_format = matches.is_present(LONG_L);
+    list_directory_contents(path, writer, long_format)
 }

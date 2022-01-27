@@ -1,16 +1,17 @@
 use std::error::Error;
+use std::fs::ReadDir;
 use std::io::Write;
 use std::path::Path;
 
 use crate::command::{write_bytes, DOUBLE_SPACE, NEWLINE};
 
 pub fn list_directory_contents(
-    directory: &Path,
+    directory: ReadDir,
     writer: Box<dyn Write>,
     long_format: bool,
 ) -> Result<(), Box<dyn Error>> {
     let mut contents = vec![];
-    for entry in std::fs::read_dir(directory)? {
+    for entry in directory {
         let entry = entry?;
         let name = entry.file_name().into_string().unwrap();
         contents.push(name)

@@ -2,14 +2,56 @@
 
 A Rust implementation of gnu-coreutils programs (https://www.gnu.org/software/coreutils/manual/coreutils.html)
 
-## Build and Run
+## Installation via cargo
 
-In the root directory invoke the program and provide a subcommand to execute:
+Install on any platform using Cargo:
 
 ```
-$ cargo run echo foo bar
+$ cargo install --git https://github.com/wcygan/rust-coreutils
 ```
 
-## Run the tests
+## How to run
 
-In the root directory you can execute `cargo test` to run the tests:
+Once the binary is installed, use the `rcu` program like so:
+
+```
+$ rcu
+Will C. <wcygan.io@gmail.com>
+A Rust implementation of gnu-coreutils programs
+
+USAGE:
+    rcu <SUBCOMMAND>
+
+OPTIONS:
+    -h, --help       Print help information
+    -V, --version    Print version information
+
+SUBCOMMANDS:
+    echo    Echos the provided text
+    help    Print this message or the help of the given subcommand(s)
+    ls      Echos the provided text
+    tree    Shows a file tree of a directory
+    wc      Print newline, word, and byte counts
+```
+
+You can execute command like `tree` in the following way:
+
+```
+$ rcu tree src
+src
+├─── command
+│   ├─── echo
+│   │   ├─── lib.rs
+│   │   └── mod.rs
+│   ├─── ls
+│   │   ├─── lib.rs
+│   │   └── mod.rs
+│   ├─── mod.rs
+│   ├─── tree
+│   │   ├─── lib.rs
+│   │   └── mod.rs
+│   └── wc
+│       ├─── lib.rs
+│       └── mod.rs
+└── main.rs
+```
