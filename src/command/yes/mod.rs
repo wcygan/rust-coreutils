@@ -1,11 +1,9 @@
 use std::error::Error;
 
-
-
 use clap::{App, Arg, ArgMatches};
 
+use crate::command::get_stdin;
 use crate::command::yes::lib::repeat;
-use crate::command::{get_stdin};
 
 mod lib;
 
@@ -26,7 +24,7 @@ pub fn yes_command() -> App<'static> {
 pub fn yes_main(matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
     let text = match matches.values_of(TEXT) {
         None => get_stdin()?,
-        Some(values) => values.collect(),
+        Some(values) => values.collect::<Vec<&str>>().join(" "),
     };
     repeat(text)
 }
