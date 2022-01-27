@@ -1,7 +1,6 @@
 use std::error::Error;
 use std::fs::ReadDir;
 use std::io::Write;
-use std::path::Path;
 
 use crate::command::{write_bytes, DOUBLE_SPACE, NEWLINE};
 

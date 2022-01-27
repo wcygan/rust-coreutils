@@ -1,7 +1,5 @@
 use std::error::Error;
-use std::ffi::OsString;
 use std::fs::{DirEntry, ReadDir};
-use std::io::Write;
 use std::path::Path;
 
 use crate::command::{NotFoundError, HIDDEN_FILE_PREFIX, SINGLE_SPACE, TRIPLE_SPACE};
@@ -22,7 +20,7 @@ pub fn show_directory_tree(
 }
 
 pub fn walk_directory(
-    mut directory: ReadDir,
+    directory: ReadDir,
     show_hidden_files: bool,
     active_pipes: Vec<bool>,
 ) -> Result<(), Box<dyn Error>> {

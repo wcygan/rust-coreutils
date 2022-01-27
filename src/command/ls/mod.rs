@@ -4,7 +4,7 @@ use std::path::Path;
 use clap::{App, Arg, ArgMatches};
 
 use crate::command::ls::lib::list_directory_contents;
-use crate::command::{NotFoundError, CURRENT_DIRECTORY};
+use crate::command::CURRENT_DIRECTORY;
 
 pub mod lib;
 

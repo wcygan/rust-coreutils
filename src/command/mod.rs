@@ -1,9 +1,7 @@
 use std::error::Error;
 use std::fmt;
 use std::fmt::Debug;
-use std::fs::DirEntry;
 use std::io::Write;
-use std::path::Path;
 
 pub mod echo;
 pub mod ls;
