@@ -5,10 +5,18 @@ use std::io::Write;
 
 pub mod echo;
 pub mod ls;
+pub mod wc;
 
 pub const NEWLINE: &str = "\n";
 pub const DOUBLE_SPACE: &str = "  ";
 pub const CURRENT_DIRECTORY: &str = ".";
+
+fn write_bytes(mut writer: Box<dyn Write>, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
+    match writer.write(bytes) {
+        Ok(_) => Ok(()),
+        Err(e) => Err(Box::new(e)),
+    }
+}
 
 #[derive(Debug, Clone)]
 pub struct NotFoundError {
@@ -29,10 +37,22 @@ impl fmt::Display for NotFoundError {
     }
 }
 
-fn write_bytes(mut writer: Box<dyn Write>, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
-    match writer.write(bytes) {
-        Ok(_) => Ok(()),
-        Err(e) => Err(Box::new(e)),
+#[derive(Debug, Clone)]
+pub struct NoFilesProvidedError {
+    msg: String,
+}
+
+impl NoFilesProvidedError {
+    pub fn new(msg: String) -> NoFilesProvidedError {
+        NoFilesProvidedError { msg }
+    }
+}
+
+impl Error for NoFilesProvidedError {}
+
+impl fmt::Display for NoFilesProvidedError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.msg)
     }
 }
 
