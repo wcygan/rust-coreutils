@@ -1,10 +1,9 @@
 use std::error::Error;
-
 use std::fmt;
 use std::fmt::Debug;
 use std::io::{Read, Write};
 
-
+pub mod date;
 pub mod echo;
 pub mod ls;
 pub mod tree;

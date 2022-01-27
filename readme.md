@@ -28,6 +28,7 @@ OPTIONS:
     -V, --version    Print version information
 
 SUBCOMMANDS:
+    date    Print the system date and time
     echo    Echos the provided text
     help    Print this message or the help of the given subcommand(s)
     ls      Echos the provided text
@@ -42,6 +43,9 @@ You can execute a subcommand like `tree` in the following way:
 $ rcu tree src
 src
 ├─── command
+│   ├─── date
+│   │   ├─── lib.rs
+│   │   └── mod.rs
 │   ├─── echo
 │   │   ├─── lib.rs
 │   │   └── mod.rs
