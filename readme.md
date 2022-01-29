@@ -16,18 +16,19 @@ Once the binary is installed, use the `rcu` program like so:
 
 ```
 $ rcu
-rust-coreutils 0.1.0
-Will C. <wcygan.io@gmail.com>
+rust-coreutils 0.1.0                           
+Will C. <wcygan.io@gmail.com>                  
 A Rust implementation of gnu-coreutils programs
-
-USAGE:
-    rcu.exe <SUBCOMMAND>
-
-OPTIONS:
-    -h, --help       Print help information
-    -V, --version    Print version information
-
-SUBCOMMANDS:
+                                               
+USAGE:                                         
+    rcu.exe <SUBCOMMAND>                       
+                                               
+OPTIONS:                                       
+    -h, --help       Print help information    
+    -V, --version    Print version information 
+                                               
+SUBCOMMANDS:                                   
+    cat     Copies each file, or standard input if none are given, to standard output
     date    Print the system date and time
     echo    Echos the provided text
     help    Print this message or the help of the given subcommand(s)
@@ -43,6 +44,9 @@ You can execute a subcommand like `tree` in the following way:
 $ rcu tree src
 src
 ├── command
+│   ├── cat
+│   │   ├── lib.rs
+│   │   └── mod.rs
 │   ├── date
 │   │   ├── lib.rs
 │   │   └── mod.rs
