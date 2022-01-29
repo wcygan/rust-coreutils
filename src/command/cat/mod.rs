@@ -1,5 +1,5 @@
 use std::error::Error;
-use std::io::{BufRead, Read};
+use std::io::{BufRead};
 
 use clap::{App, Arg, ArgMatches};
 

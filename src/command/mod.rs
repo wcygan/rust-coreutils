@@ -1,6 +1,5 @@
 use std::error::Error;
-use std::f32::consts::E;
-use std::fmt::{format, Debug};
+use std::fmt::Debug;
 use std::fs::File;
 use std::io::{BufRead, BufReader, Read, Write};
 use std::{fmt, io};
@@ -32,10 +31,11 @@ fn stdin_reader() -> Box<dyn BufRead> {
     Box::new(BufReader::new(io::stdin()))
 }
 
-fn print_reader(mut reader: Box<dyn BufRead>) {
+fn print_reader(mut reader: Box<dyn BufRead>) -> Result<(), Box<dyn Error>> {
     let mut buf = String::new();
-    reader.read_to_string(&mut buf);
-    println!("{}", buf)
+    reader.read_to_string(&mut buf)?;
+    println!("{}", buf);
+    Ok(())
 }
 
 fn into_reader(filename: &str) -> Result<Box<dyn BufRead>, Box<dyn Error>> {
