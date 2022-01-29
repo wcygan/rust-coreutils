@@ -1,8 +1,11 @@
 use std::error::Error;
-use std::fmt;
-use std::fmt::Debug;
-use std::io::{Read, Write};
+use std::f32::consts::E;
+use std::fmt::{format, Debug};
+use std::fs::File;
+use std::io::{BufRead, BufReader, Read, Write};
+use std::{fmt, io};
 
+pub mod cat;
 pub mod date;
 pub mod echo;
 pub mod ls;
@@ -17,11 +20,36 @@ pub const TRIPLE_SPACE: &str = "   ";
 pub const CURRENT_DIRECTORY: &str = ".";
 pub const HIDDEN_FILE_PREFIX: &str = ".";
 
-fn get_stdin() -> Result<String, Box<dyn Error>> {
+fn get_stdin_text() -> Result<String, Box<dyn Error>> {
     let mut buffer = String::new();
     match std::io::stdin().read_to_string(&mut buffer) {
         Ok(_) => Ok(buffer),
         Err(e) => Err(Box::new(e)),
+    }
+}
+
+fn stdin_reader() -> Box<dyn BufRead> {
+    Box::new(BufReader::new(io::stdin()))
+}
+
+fn print_reader(mut reader: Box<dyn BufRead>) {
+    let mut buf = String::new();
+    reader.read_to_string(&mut buf);
+    println!("{}", buf)
+}
+
+fn into_reader(filename: &str) -> Result<Box<dyn BufRead>, Box<dyn Error>> {
+    let file = into_file(filename)?;
+    Ok(Box::new(BufReader::new(file)))
+}
+
+fn into_file(filename: &str) -> Result<File, Box<dyn Error>> {
+    match File::open(filename) {
+        Ok(file) => Ok(file),
+        Err(_) => Err(Box::new(NotFoundError::new(format!(
+            "cannot find file {}",
+            filename
+        )))),
     }
 }
 

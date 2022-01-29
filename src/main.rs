@@ -2,6 +2,7 @@ extern crate core;
 
 use clap::{App, AppSettings};
 
+use crate::command::cat::{cat_command, cat_main, CAT};
 use crate::command::date::{date_command, date_main, DATE};
 use crate::command::echo::{echo_command, echo_main, ECHO};
 use crate::command::ls::{ls_command, ls_main, LS};
@@ -28,6 +29,7 @@ fn main() {
         Some((TREE, sub_matches)) => tree_main(sub_matches),
         Some((YES, sub_matches)) => yes_main(sub_matches),
         Some((DATE, sub_matches)) => date_main(sub_matches),
+        Some((CAT, sub_matches)) => cat_main(sub_matches),
         _ => unreachable!(),
     } {
         eprintln!("{}", e);
@@ -43,5 +45,6 @@ fn get_subcommands() -> Vec<App<'static>> {
         tree_command(),
         yes_command(),
         date_command(),
+        cat_command(),
     ]
 }
