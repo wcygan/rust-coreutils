@@ -10,6 +10,7 @@ pub mod echo;
 pub mod ls;
 pub mod tree;
 pub mod wc;
+pub mod yell;
 pub mod yes;
 
 pub const NEWLINE: &str = "\n";

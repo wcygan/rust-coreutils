@@ -8,6 +8,7 @@ use crate::command::echo::{echo_command, echo_main, ECHO};
 use crate::command::ls::{ls_command, ls_main, LS};
 use crate::command::tree::{tree_command, tree_main, TREE};
 use crate::command::wc::{wc_command, wc_main, WC};
+use crate::command::yell::{yell_command, yell_main, YELL};
 use crate::command::yes::{yes_command, yes_main, YES};
 
 mod command;
@@ -30,6 +31,7 @@ fn main() {
         Some((YES, sub_matches)) => yes_main(sub_matches),
         Some((DATE, sub_matches)) => date_main(sub_matches),
         Some((CAT, sub_matches)) => cat_main(sub_matches),
+        Some((YELL, sub_matches)) => yell_main(sub_matches),
         _ => unreachable!(),
     } {
         eprintln!("{}", e);
@@ -46,5 +48,6 @@ fn get_subcommands() -> Vec<App<'static>> {
         yes_command(),
         date_command(),
         cat_command(),
+        yell_command(),
     ]
 }
