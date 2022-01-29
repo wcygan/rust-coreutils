@@ -15,7 +15,7 @@ const LONG_L: &str = "long";
 
 pub fn ls_command() -> App<'static> {
     App::new(LS)
-        .about("Echos the provided text")
+        .about("List the contents of a directory")
         .arg(
             Arg::new(DIR)
                 .required(false)
