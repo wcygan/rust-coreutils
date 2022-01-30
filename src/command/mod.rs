@@ -7,6 +7,7 @@ use std::{fmt, io};
 pub mod cat;
 pub mod date;
 pub mod echo;
+pub mod head;
 pub mod ls;
 pub mod tree;
 pub mod wc;
