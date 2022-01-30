@@ -6,6 +6,7 @@ use crate::command::cat::{cat_command, cat_main, CAT};
 use crate::command::cp::{cp_command, cp_main, CP};
 use crate::command::date::{date_command, date_main, DATE};
 use crate::command::echo::{echo_command, echo_main, ECHO};
+use crate::command::grep::{grep_command, grep_main, GREP};
 use crate::command::head::{head_command, head_main, HEAD};
 use crate::command::ls::{ls_command, ls_main, LS};
 use crate::command::nl::{nl_command, nl_main, NL};
@@ -40,6 +41,7 @@ fn main() {
         Some((NL, sub_matches)) => nl_main(sub_matches),
         Some((CP, sub_matches)) => cp_main(sub_matches),
         Some((TAIL, sub_matches)) => tail_main(sub_matches),
+        Some((GREP, sub_matches)) => grep_main(sub_matches),
         _ => unreachable!(),
     } {
         eprintln!("error: {}", e);
@@ -61,5 +63,6 @@ fn get_subcommands() -> Vec<App<'static>> {
         nl_command(),
         cp_command(),
         tail_command(),
+        grep_command(),
     ]
 }
