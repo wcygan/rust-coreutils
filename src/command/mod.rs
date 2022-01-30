@@ -1,5 +1,4 @@
 use std::error::Error;
-
 use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, Read, Write};
@@ -15,6 +14,7 @@ pub mod error;
 pub mod head;
 pub mod ls;
 pub mod nl;
+pub mod tail;
 pub mod tree;
 pub mod wc;
 pub mod yell;
