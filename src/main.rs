@@ -7,6 +7,7 @@ use crate::command::date::{date_command, date_main, DATE};
 use crate::command::echo::{echo_command, echo_main, ECHO};
 use crate::command::head::{head_command, head_main, HEAD};
 use crate::command::ls::{ls_command, ls_main, LS};
+use crate::command::nl::{nl_command, nl_main, NL};
 use crate::command::tree::{tree_command, tree_main, TREE};
 use crate::command::wc::{wc_command, wc_main, WC};
 use crate::command::yell::{yell_command, yell_main, YELL};
@@ -34,6 +35,7 @@ fn main() {
         Some((CAT, sub_matches)) => cat_main(sub_matches),
         Some((YELL, sub_matches)) => yell_main(sub_matches),
         Some((HEAD, sub_matches)) => head_main(sub_matches),
+        Some((NL, sub_matches)) => nl_main(sub_matches),
         _ => unreachable!(),
     } {
         eprintln!("{}", e);
@@ -52,5 +54,6 @@ fn get_subcommands() -> Vec<App<'static>> {
         cat_command(),
         yell_command(),
         head_command(),
+        nl_command(),
     ]
 }

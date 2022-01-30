@@ -9,6 +9,7 @@ pub mod date;
 pub mod echo;
 pub mod head;
 pub mod ls;
+pub mod nl;
 pub mod tree;
 pub mod wc;
 pub mod yell;
