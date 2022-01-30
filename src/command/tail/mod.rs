@@ -1,5 +1,5 @@
 use std::error::Error;
-use std::io::BufRead;
+use std::path::Path;
 
 use clap::{App, Arg, ArgMatches};
 
@@ -49,12 +49,12 @@ pub fn tail_main(matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
         .unwrap_or(NUMBER_DEFAULT_VALUE)
         .parse::<usize>()?;
 
-    let reader = match matches.value_of(FILE) {
-        None => stdin_reader(),
-        Some(file) => into_reader(file)?,
+    let (reader, path) = match matches.value_of(FILE) {
+        None => (stdin_reader(), None),
+        Some(file) => (into_reader(file)?, Some(Path::new(file))),
     };
 
     let follow = matches.is_present(FOLLOW_L);
 
-    print_tail(reader, number, follow)
+    print_tail(reader, path, number, follow)
 }

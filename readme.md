@@ -27,8 +27,8 @@ OPTIONS:
     -h, --help       Print help information    
     -V, --version    Print version information 
                                                
-SUBCOMMANDS:
-    cat     Copies each file, or standard input if none are given, to standard output
+SUBCOMMANDS:                                   
+    cat     Copies each file, or standard input if none are given, to standard output      
     cp      Copies a given file to the destination path
     date    Print the system date and time
     echo    Echos the provided text
@@ -36,10 +36,12 @@ SUBCOMMANDS:
     help    Print this message or the help of the given subcommand(s)
     ls      List the contents of a directory
     nl      Prepends line numbers to the input files and prints them to stdout
+    tail    Prints the last part of each file
     tree    Shows a file tree of a directory
     wc      Print newline, word, and byte counts
     yell    Echos the provided text in uppercase
-    yes     Repeats the provided text until interrupted                       
+    yes     Repeats the provided text until interrupted
+                     
 ```
 
 You can execute a subcommand like `tree` in the following way:
@@ -47,41 +49,44 @@ You can execute a subcommand like `tree` in the following way:
 ```
 $ rcu tree src
 src
-├── main.rs
-└── command
-    ├── cat
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── tree
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── echo
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── error.rs
-    ├── date
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── yell
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── wc
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── head
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── mod.rs
-    ├── nl
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── ls
-    │   ├── lib.rs
-    │   └── mod.rs
-    ├── cp
-    │   ├── lib.rs
-    │   └── mod.rs
-    └── yes
-        ├── lib.rs
-        └── mod.rs
+├── command          
+│   ├── cat          
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── cp           
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── date         
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── echo         
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── error.rs     
+│   ├── head         
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── ls           
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── mod.rs       
+│   ├── nl           
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── tail         
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── tree         
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── wc           
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   ├── yell         
+│   │   ├── lib.rs   
+│   │   └── mod.rs   
+│   └── yes          
+│       ├── lib.rs   
+│       └── mod.rs   
+└── main.rs 
 ```

@@ -1,8 +1,16 @@
 use std::error::Error;
-use std::io::BufRead;
+use std::fs;
+use std::fs::File;
+use std::io::{BufRead, Read, Seek, SeekFrom};
+use std::path::Path;
+use std::sync::mpsc;
+use std::time::Duration;
+
+use notify::{watcher, DebouncedEvent, RecursiveMode, Watcher};
 
 pub fn print_tail(
     mut reader: Box<dyn BufRead>,
+    path: Option<&Path>,
     n: usize,
     follow: bool,
 ) -> Result<(), Box<dyn Error>> {
@@ -21,13 +29,44 @@ pub fn print_tail(
         println!("{}", line)
     }
 
-    // if follow {
-    //     follow_reader(&mut reader)?
-    // }
+    if follow {
+        if let Some(path) = path {
+            follow_reader(path)?
+        }
+    }
 
     Ok(())
 }
 
-fn follow_reader(reader: &mut Box<dyn BufRead>) -> Result<(), Box<dyn Error>> {
-    todo!("Implement follow")
+fn follow_reader(path: &Path) -> Result<(), Box<dyn Error>> {
+    let (tx, rx) = mpsc::channel();
+    let mut watcher = watcher(tx, Duration::from_millis(100)).unwrap();
+    watcher.watch(&path, RecursiveMode::NonRecursive).unwrap();
+
+    let mut contents = fs::read_to_string(&path).unwrap();
+    let mut pos = contents.len() as u64;
+
+    print!("{}", contents);
+
+    ctrlc::set_handler(move || {
+        std::process::exit(0);
+    })?;
+
+    loop {
+        match rx.recv() {
+            Ok(DebouncedEvent::Write(_)) => {
+                let mut f = File::open(&path).unwrap();
+                f.seek(SeekFrom::Start(pos)).unwrap();
+
+                pos = f.metadata().unwrap().len();
+
+                contents.clear();
+                f.read_to_string(&mut contents).unwrap();
+
+                print!("{}", contents);
+            }
+            Ok(_) => {}
+            Err(err) => return Err(Box::new(err)),
+        }
+    }
 }
