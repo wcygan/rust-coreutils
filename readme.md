@@ -29,6 +29,7 @@ OPTIONS:
                                                
 SUBCOMMANDS:
     cat     Copies each file, or standard input if none are given, to standard output
+    cp      Copies a given file to the destination path
     date    Print the system date and time
     echo    Echos the provided text
     head    Prints the first part of each file
@@ -38,7 +39,7 @@ SUBCOMMANDS:
     tree    Shows a file tree of a directory
     wc      Print newline, word, and byte counts
     yell    Echos the provided text in uppercase
-    yes     Repeats the provided text until interrupted                         
+    yes     Repeats the provided text until interrupted                       
 ```
 
 You can execute a subcommand like `tree` in the following way:
@@ -46,37 +47,41 @@ You can execute a subcommand like `tree` in the following way:
 ```
 $ rcu tree src
 src
-├── command       
-│   ├── cat       
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── date      
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── echo      
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── head      
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── ls        
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── mod.rs    
-│   ├── nl        
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── tree      
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── wc        
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   ├── yell
-│   │   ├── lib.rs
-│   │   └── mod.rs
-│   └── yes
-│       ├── lib.rs
-│       └── mod.rs
-└── main.rs
+├── main.rs
+└── command
+    ├── cat
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── tree
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── echo
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── error.rs
+    ├── date
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── yell
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── wc
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── head
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── mod.rs
+    ├── nl
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── ls
+    │   ├── lib.rs
+    │   └── mod.rs
+    ├── cp
+    │   ├── lib.rs
+    │   └── mod.rs
+    └── yes
+        ├── lib.rs
+        └── mod.rs
 ```

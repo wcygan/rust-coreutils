@@ -3,6 +3,7 @@ extern crate core;
 use clap::{App, AppSettings};
 
 use crate::command::cat::{cat_command, cat_main, CAT};
+use crate::command::cp::{cp_command, cp_main, CP};
 use crate::command::date::{date_command, date_main, DATE};
 use crate::command::echo::{echo_command, echo_main, ECHO};
 use crate::command::head::{head_command, head_main, HEAD};
@@ -36,9 +37,10 @@ fn main() {
         Some((YELL, sub_matches)) => yell_main(sub_matches),
         Some((HEAD, sub_matches)) => head_main(sub_matches),
         Some((NL, sub_matches)) => nl_main(sub_matches),
+        Some((CP, sub_matches)) => cp_main(sub_matches),
         _ => unreachable!(),
     } {
-        eprintln!("{}", e);
+        eprintln!("error: {}", e);
         std::process::exit(1);
     }
 }
@@ -55,5 +57,6 @@ fn get_subcommands() -> Vec<App<'static>> {
         yell_command(),
         head_command(),
         nl_command(),
+        cp_command(),
     ]
 }

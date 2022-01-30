@@ -1,12 +1,17 @@
 use std::error::Error;
-use std::fmt::Debug;
+
 use std::fs::File;
+use std::io;
 use std::io::{BufRead, BufReader, Read, Write};
-use std::{fmt, io};
+use std::path::Path;
+
+use crate::command::error::{ArgumentError, NotFoundError};
 
 pub mod cat;
+pub mod cp;
 pub mod date;
 pub mod echo;
+pub mod error;
 pub mod head;
 pub mod ls;
 pub mod nl;
@@ -56,29 +61,50 @@ fn into_file(filename: &str) -> Result<File, Box<dyn Error>> {
     }
 }
 
+pub fn into_file_path(filename: &str) -> Result<&Path, Box<dyn Error>> {
+    let path = Path::new(filename);
+
+    if !path.exists() {
+        return Err(Box::new(ArgumentError::new(format!(
+            "the path {} does not exist",
+            filename
+        ))));
+    }
+
+    if !path.is_file() {
+        return Err(Box::new(ArgumentError::new(format!(
+            "the path {} is not a file",
+            filename
+        ))));
+    }
+
+    Ok(path)
+}
+
+pub fn into_directory_path(dirname: &str) -> Result<&Path, Box<dyn Error>> {
+    let path = Path::new(dirname);
+
+    if !path.exists() {
+        return Err(Box::new(ArgumentError::new(format!(
+            "the path {} does not exist",
+            dirname
+        ))));
+    }
+
+    if !path.is_dir() {
+        return Err(Box::new(ArgumentError::new(format!(
+            "the path {} is not a directory",
+            dirname
+        ))));
+    }
+
+    Ok(path)
+}
+
 fn write_bytes(mut writer: Box<dyn Write>, bytes: &[u8]) -> Result<(), Box<dyn Error>> {
     match writer.write(bytes) {
         Ok(_) => Ok(()),
         Err(e) => Err(Box::new(e)),
-    }
-}
-
-#[derive(Debug, Clone)]
-pub struct NotFoundError {
-    msg: String,
-}
-
-impl NotFoundError {
-    pub fn new(msg: String) -> NotFoundError {
-        NotFoundError { msg }
-    }
-}
-
-impl Error for NotFoundError {}
-
-impl fmt::Display for NotFoundError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.msg)
     }
 }
 
