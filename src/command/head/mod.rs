@@ -50,7 +50,12 @@ pub fn head_main(matches: &ArgMatches) -> Result<(), Box<dyn Error>> {
         }
     };
 
+    let sz = readers.len();
     for (name, reader) in readers {
+        let name = match sz == 1 {
+            true => None,
+            false => name,
+        };
         print_first_n_lines(name, reader, number)?
     }
 
